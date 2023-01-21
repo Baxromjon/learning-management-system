@@ -1,0 +1,31 @@
+package com.example.learningmanagementsystem.entity.template;
+
+import com.example.learningmanagementsystem.utils.ColumnName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+@Getter
+@Setter
+@ToString
+@MappedSuperclass
+public abstract class DateAudit implements Serializable {
+
+    @CreationTimestamp
+    @Column(name = ColumnName.CREATED_AT, updatable = false)
+    private Timestamp createdAt;
+
+    @UpdateTimestamp
+    @Column(name = ColumnName.UPDATED_AT)
+    private Timestamp updatedAt;
+
+    @Column(name = ColumnName.DELETED)
+    private Boolean deleted = false;
+}

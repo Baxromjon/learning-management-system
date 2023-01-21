@@ -1,0 +1,50 @@
+package com.example.learningmanagementsystem.utils;
+
+public interface ColumnName {
+    String ID = "id";
+    String CREATED_AT = "created_at";
+    String UPDATED_AT = "updated_at";
+    String DELETED = "deleted";
+    String CREATED_BY_ID = "created_by_id";
+    String UPDATED_BY_ID = "updated_by_id";
+    String FIRST_NAME = "first_name";
+    String LAST_NAME = "last_name";
+    String PHONE_NUMBER = "phone_number";
+    String PASSWORD = "password";
+    String EMAIL = "email";
+    String ACCOUNT_NON_EXPIRED = "account_non_expired";
+    String ACCOUNT_NON_LOCKED = "account_non_locked";
+    String CREDENTIALS_NON_EXPIRED = "credentials_non_expired";
+    String ENABLED = "enabled";
+    String NAME = "name";
+    String USER_ROLE = "user_role";
+    String USER_ID = "user_id";
+    String ROLE_ID = "role_id";
+
+    String STATUS="status";
+    String BIRTHDATE = "birth_date";
+    String DESCRIPTION = "description";
+    String ACTIVE = "is_active";
+    String LEVEL = "level";
+    String TITLE = "title";
+    String INVITE_LINK = "invite_link";
+    String TIME = "time";
+    String WEEK_DAYS = "week_days";
+    String LESSON_NUMBER = "lesson_number";
+    String URL = "url";
+    String TASK_NUMBER = "task_number";
+    String MUST_COMPLETE = "must_complete";
+    String AMOUNT = "amount";
+    String DATE = "date";
+    String QUESTION = "question";
+    String OUR_SOLUTION = "our_solution";
+    String IS_LOOKED = "is_looked";
+    String PERCENT = "percent";
+    String TEXT = "text";
+    String ANSWER = "answer";
+    String RATING = "rating";
+    String SPEAKER = "speaker_full_name";
+    String START_TIME = "start_time";
+    String FULL_NAME = "full_name";
+    String COMMENT = "comment";
+}
