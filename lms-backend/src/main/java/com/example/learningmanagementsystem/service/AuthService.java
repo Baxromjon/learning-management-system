@@ -1,5 +1,6 @@
 package com.example.learningmanagementsystem.service;
 
+import com.example.learningmanagementsystem.entity.Cash;
 import com.example.learningmanagementsystem.entity.Gender;
 import com.example.learningmanagementsystem.entity.Role;
 import com.example.learningmanagementsystem.entity.User;
@@ -7,6 +8,7 @@ import com.example.learningmanagementsystem.enums.GenderEnums;
 import com.example.learningmanagementsystem.enums.RoleEnum;
 import com.example.learningmanagementsystem.payload.ApiResult;
 import com.example.learningmanagementsystem.payload.RegisterDTO;
+import com.example.learningmanagementsystem.repository.CashRepository;
 import com.example.learningmanagementsystem.repository.GenderRepository;
 import com.example.learningmanagementsystem.repository.RoleRepository;
 import com.example.learningmanagementsystem.repository.UserRepository;
@@ -34,6 +36,9 @@ public class AuthService implements UserDetailsService {
 
     @Autowired
     GenderRepository genderRepository;
+
+    @Autowired
+    CashRepository cashRepository;
 
 
     @Override
@@ -65,12 +70,17 @@ public class AuthService implements UserDetailsService {
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_PARENT.toString())) {
                 user.setParentKey(randomParentKey());
             }
-            if (role.getRoleEnum().name().equals(RoleEnum.ROLE_USER.toString())){
+            if (role.getRoleEnum().name().equals(RoleEnum.ROLE_USER.toString())) {
                 User parent = userRepository.findUserByParentKey(registerDTO.getParentKey());
                 user.setParentId(parent);
             }
             userRepository.save(user);
-            return new ApiResult(user.getParentKey(),true, "Successfully registered");
+
+            if (user.getRoles().iterator().next().getRoleEnum().equals(RoleEnum.ROLE_USER)) {
+                Cash cash = new Cash(0, user);
+                cashRepository.save(cash);
+            }
+            return new ApiResult(user.getParentKey(), true, "Successfully registered");
         } catch (Exception e) {
             e.printStackTrace();
             return new ApiResult(false, "Error in register");

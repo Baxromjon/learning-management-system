@@ -11,9 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -28,6 +26,6 @@ public class Cash extends AbsEntity {
     @Column(name = ColumnName.AMOUNT)
     private double amount;
 
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private User user;
 }
