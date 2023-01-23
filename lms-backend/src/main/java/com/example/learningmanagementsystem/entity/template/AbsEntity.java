@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
+
 @Getter
 @Setter
 @ToString
@@ -21,7 +22,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public abstract class AbsEntity extends UserDateAudit {
     @Id
-    @Type(type = "org.hibernate.type.PostgresUUIDType")
+    //@Type(type = "org.hibernate.type.PostgresUUIDType")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = ColumnName.ID)
