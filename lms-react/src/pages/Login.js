@@ -1,8 +1,49 @@
-import React, {Component} from 'react';
-import "./login.css"
+import React, {Component, useEffect} from 'react';
+import "./login.css";
+import {useForm} from 'react-hook-form'
+import request from "../utils/request";
+import {api} from "../utils/api";
+import {TOKEN} from "../utils/constant";
+import {useHistory} from 'react-router-dom';
 
-class Login extends Component {
-    render() {
+
+function Login(){
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const history = useHistory();
+
+    const login=(e)=>{
+        request({
+            url:api.login,
+            method:'POST',
+            data:e
+        }).then(res=>{
+            if (res.status===200){
+                // console.log(res)
+                localStorage.setItem(TOKEN, 'Bearer '+res.data.data)
+                request({
+                    url:api.userMe,
+                    method:'GET'
+                }).then(ress=>{
+                    console.log(ress.data.data.authorities[0].roleEnum)
+                    if (ress.data.data.authorities[0].roleEnum==='ROLE_ADMIN'){
+                        history.push("/admin")
+                    }else if (ress.data.data.authorities[0].roleEnum==='ROLE_PARENT'){
+                        history.push("/parent")
+                    }else if (ress.data.data.authorities[0].roleEnum==='ROLE_MENTOR'){
+                        history.push("/mentor")
+                    }else if (ress.data.data.authorities[0].roleEnum==='ROLE_USER'){
+                        history.push("/user")
+                    }else if (ress.data.data.authorities[0].roleEnum==='ROLE_SUPER_ADMIN'){
+                        history.push("/admin")
+                    }
+                })
+            }
+        }).catch(err=>{
+            alert("Some error in login!")
+        })
+    }
+
+    // render() {
         return (
             <div className="container h-100">
                 <div className="row h-100">
@@ -24,18 +65,16 @@ class Login extends Component {
                                                  alt="Andrew Jones" className="img-fluid rounded-circle" width="132"
                                                  height="132"/>
                                         </div>
-                                        <form>
+                                        <form onSubmit={handleSubmit(login)}>
                                             <div className="form-group">
-                                                <label>Email</label>
-                                                <input className="form-control form-control-lg" type="email"
-                                                       name="email" placeholder="Enter your email"/>
+                                                <label>Phone Number</label>
+                                                <input className="form-control form-control-lg" defaultValue="phoneNumber" {...register("phoneNumber")} />
                                             </div>
                                             <div className="form-group">
                                                 <label>Password</label>
-                                                <input className="form-control form-control-lg" type="password"
-                                                       name="password" placeholder="Enter your password"/>
+                                                <input className="form-control form-control-lg" type="password" defaultValue="password" {...register("password")} />
                                                     <small>
-                                                        <a href="pages-reset-password.html">Forgot password?</a>
+                                                        <a>Forgot password?</a>
                                                     </small>
                                             </div>
                                             <div>
@@ -47,7 +86,7 @@ class Login extends Component {
                                                 </div>
                                             </div>
                                             <div className="text-center mt-3">
-                                                <a href="index.html" className="btn btn-lg btn-primary">Sign in</a>
+                                                <button className="btn btn-info" type="submit">SIGN IN</button>
                                             </div>
                                         </form>
                                     </div>
@@ -59,7 +98,7 @@ class Login extends Component {
                 </div>
             </div>
         );
-    }
+    // }
 }
 
 Login.propTypes = {};

@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,6 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public abstract class AbsEntity extends UserDateAudit {
     @Id
-    @Type(type = "org.hibernate.type.PostgresUUIDType")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = ColumnName.ID)

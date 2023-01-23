@@ -24,10 +24,10 @@ public abstract class UserDateAudit extends DateAudit {
 
     @CreatedBy
     @Column(name = ColumnName.CREATED_BY_ID, updatable = false)
-    private UUID createdById;
+    private Integer createdById;
 
     @LastModifiedBy
     @Column(name = ColumnName.UPDATED_BY_ID)
-    private UUID updatedById;
+    private Integer updatedById;
 
 }

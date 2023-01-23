@@ -18,4 +18,5 @@ public class RegisterDTO {
     private String password;
     private Integer roleId;
     private Integer genderId;
+    private String parentKey;
 }

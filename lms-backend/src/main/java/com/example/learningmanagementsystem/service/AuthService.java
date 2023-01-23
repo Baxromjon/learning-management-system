@@ -45,7 +45,7 @@ public class AuthService implements UserDetailsService {
     }
 
     public UserDetails loadUserByUserId(String userIdFromToken) {
-        return userRepository.findById(UUID.fromString(userIdFromToken)).orElseThrow(() -> new UsernameNotFoundException("userId"));
+        return userRepository.findById(UUID.fromString(userIdFromToken)).orElseThrow();
     }
 
 
@@ -64,6 +64,10 @@ public class AuthService implements UserDetailsService {
             user.setRoles(byName);
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_PARENT.toString())) {
                 user.setParentKey(randomOrderId());
+            }
+            if (role.getRoleEnum().name().equals(RoleEnum.ROLE_USER.toString())){
+                User parent = userRepository.findUserByParentKey(registerDTO.getParentKey());
+                user.setParentId(parent);
             }
             userRepository.save(user);
             return new ApiResult(user.getParentKey(),true, "Successfully registered");

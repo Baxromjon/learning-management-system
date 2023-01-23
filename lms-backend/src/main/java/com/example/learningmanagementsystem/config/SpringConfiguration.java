@@ -14,10 +14,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SpringConfiguration extends WebSecurityConfigurerAdapter {
 
-//    @Bean
-//    public static ApplicationContextProvider contextProvider() {
-//        return new ApplicationContextProvider();
-//    }
+    @Bean
+    public static ApplicationContextProvider contextProvider() {
+        return new ApplicationContextProvider();
+    }
 
     @Bean
     JwtAuthenticationFilter jwtFilter() {

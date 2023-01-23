@@ -4,6 +4,7 @@ import com.example.learningmanagementsystem.entity.User;
 import com.example.learningmanagementsystem.payload.ApiResult;
 import com.example.learningmanagementsystem.payload.LoginDTO;
 import com.example.learningmanagementsystem.payload.RegisterDTO;
+import com.example.learningmanagementsystem.payload.UserData;
 import com.example.learningmanagementsystem.repository.UserRepository;
 import com.example.learningmanagementsystem.security.JwtTokenProvider;
 import com.example.learningmanagementsystem.service.AuthService;
