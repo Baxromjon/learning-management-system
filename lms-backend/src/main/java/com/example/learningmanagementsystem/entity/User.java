@@ -1,7 +1,6 @@
 package com.example.learningmanagementsystem.entity;
 
 import com.example.learningmanagementsystem.entity.template.AbsEntity;
-import com.example.learningmanagementsystem.enums.GenderEnums;
 import com.example.learningmanagementsystem.utils.ColumnName;
 import com.example.learningmanagementsystem.utils.EntityName;
 import lombok.AllArgsConstructor;

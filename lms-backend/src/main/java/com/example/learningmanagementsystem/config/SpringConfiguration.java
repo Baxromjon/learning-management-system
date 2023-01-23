@@ -14,14 +14,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SpringConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public static ApplicationContextProvider contextProvider() {
-        return new ApplicationContextProvider();
-    }
-
 //    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
+//    public static ApplicationContextProvider contextProvider() {
+//        return new ApplicationContextProvider();
 //    }
 
     @Bean
