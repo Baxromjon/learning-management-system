@@ -63,7 +63,7 @@ public class AuthService implements UserDetailsService {
             user.setGender(gender);
             user.setRoles(byName);
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_PARENT.toString())) {
-                user.setParentKey(randomOrderId());
+                user.setParentKey(randomParentKey());
             }
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_USER.toString())){
                 User parent = userRepository.findUserByParentKey(registerDTO.getParentKey());
@@ -77,7 +77,7 @@ public class AuthService implements UserDetailsService {
         }
     }
 
-    public String randomOrderId() {
+    public String randomParentKey() {
         int max = 9999999;
         int min = 1000000;
         int floor = (int) Math.floor(Math.random() * (max - min + 1) + min);
