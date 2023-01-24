@@ -1,11 +1,13 @@
 package com.example.learningmanagementsystem.service;
 
 import com.example.learningmanagementsystem.entity.Course;
+import com.example.learningmanagementsystem.entity.Group;
 import com.example.learningmanagementsystem.entity.Lesson;
 import com.example.learningmanagementsystem.payload.ApiResult;
 import com.example.learningmanagementsystem.payload.LessonDTO;
 import com.example.learningmanagementsystem.repository.AttachmentRepository;
 import com.example.learningmanagementsystem.repository.CourseRepository;
+import com.example.learningmanagementsystem.repository.GroupRepository;
 import com.example.learningmanagementsystem.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +21,19 @@ public class LessonService {
     CourseRepository courseRepository;
 
     @Autowired
+    GroupRepository groupRepository;
+
+    @Autowired
     AttachmentRepository attachmentRepository;
 
 
     public ApiResult add(LessonDTO lessonDTO) {
         try {
-            Course course = courseRepository.findById(lessonDTO.getCourseId()).orElseThrow();
+            Group group = groupRepository.findById(lessonDTO.getGroupId()).orElseThrow();
             Lesson lesson = new Lesson(
                     lessonDTO.getTitle(),
                     lessonDTO.getLessonNumber(),
-                    course,
+                    group,
                     lessonDTO.getUrl(),
                     attachmentRepository.findById(lessonDTO.getVideoId()).orElseThrow()
             );

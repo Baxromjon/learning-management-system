@@ -9,10 +9,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LessonDTO {
-    private String title;
-    private int lessonNumber;
+public class UserGroupsDTO {
+    private UUID userId;
     private UUID groupId;
-    private String url;
-    private UUID videoId;
 }

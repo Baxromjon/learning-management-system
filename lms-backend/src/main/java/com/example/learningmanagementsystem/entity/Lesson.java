@@ -32,7 +32,7 @@ public class Lesson extends AbsEntity {
     private int lessonNumber;
 
     @ManyToOne
-    private Course course;
+    private Group group;
 
     @Column(name = ColumnName.URL)
     private String url;
