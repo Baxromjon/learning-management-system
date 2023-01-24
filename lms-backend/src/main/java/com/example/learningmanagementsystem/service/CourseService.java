@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CourseService {
@@ -41,6 +42,16 @@ public class CourseService {
         try {
             List<Course> all = courseRepository.findAll();
             return new ApiResult(all, true);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResult(false, "Error in get courses");
+        }
+    }
+    public ApiResult getAllByMentorId(UUID mentorId) {
+        try {
+            User user = userRepository.findById(mentorId).orElseThrow();
+            List<Course> courseList = courseRepository.findByMentorId(user);
+            return new ApiResult(courseList, true);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResult(false, "Error in get courses");

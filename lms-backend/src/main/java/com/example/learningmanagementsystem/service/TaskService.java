@@ -10,6 +10,8 @@ import com.example.learningmanagementsystem.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class TaskService {
     @Autowired
@@ -41,5 +43,14 @@ public class TaskService {
 
     public ApiResult getAll() {
         return new ApiResult(taskRepository.findAll(), true);
+    }
+
+    public ApiResult getAllByMentor(UUID mentorId) {
+        try {
+            return new ApiResult(taskRepository.getAllTaskByMentorId(mentorId), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResult(false, "Error in get by mentor");
+        }
     }
 }

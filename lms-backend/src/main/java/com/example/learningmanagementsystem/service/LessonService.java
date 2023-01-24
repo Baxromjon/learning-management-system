@@ -12,6 +12,9 @@ import com.example.learningmanagementsystem.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class LessonService {
     @Autowired
@@ -46,6 +49,16 @@ public class LessonService {
     }
 
     public ApiResult getAll() {
-        return new ApiResult(lessonRepository.findAll(),true);
+        return new ApiResult(lessonRepository.findAll(), true);
+    }
+
+    public ApiResult getAllByMentor(UUID mentorId) {
+        try {
+            List<Lesson> lessonList = lessonRepository.getAllByMentorId(mentorId);
+            return new ApiResult(lessonList, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResult(false, "Error in get by Id");
+        }
     }
 }

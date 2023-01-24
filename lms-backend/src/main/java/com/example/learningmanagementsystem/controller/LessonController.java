@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/lesson")
 public class LessonController {
@@ -24,5 +26,10 @@ public class LessonController {
     @GetMapping("/get_all_lesson")
     public HttpEntity<?> getAll(){
         return ResponseEntity.ok(lessonService.getAll());
+    }
+
+    @GetMapping("/get_all_lesson_by_mentor/{mentorId}")
+    public HttpEntity<?> getAllByMentor(@PathVariable UUID mentorId){
+        return ResponseEntity.ok(lessonService.getAllByMentor(mentorId));
     }
 }

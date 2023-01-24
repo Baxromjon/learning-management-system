@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class GroupService {
@@ -47,5 +48,16 @@ public class GroupService {
 
     public ApiResult getAll() {
         return new ApiResult(groupRepository.findAll(), true);
+    }
+
+    public ApiResult getAllByMentor(UUID mentorId) {
+        try {
+            User user = userRepository.findById(mentorId).orElseThrow();
+            List<Group> groupList = groupRepository.getAllGroupByMentor(mentorId);
+            return new ApiResult(groupList, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResult(false, "Error in get modules");
+        }
     }
 }

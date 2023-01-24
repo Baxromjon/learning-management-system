@@ -9,6 +9,10 @@ import UserPage from "./User/UserPage";
 import Module from "./Admin/Module";
 import Lesson from "./Admin/Lesson";
 import Task from "./Admin/Task";
+import AddCourse from "./Admin/AddCourse";
+import MentorModule from "./Mentor/MentorModule";
+import MentorLesson from "./Mentor/MentorLesson";
+import MentorTask from "./Mentor/MentorTask";
 
 function App() {
 
@@ -23,8 +27,12 @@ function App() {
                 <Route exact path="/parent" component={ParentPage}/>
                 <Route exact path="/user" component={UserPage}/>
                 <Route exact path="/modules" component={Module}/>
+                <Route exact path="/mentor-modules" component={MentorModule}/>
                 <Route exact path="/lessons" component={Lesson}/>
+                <Route exact path="/mentor-lessons" component={MentorLesson}/>
                 <Route exact path="/tasks" component={Task}/>
+                <Route exact path="/mentor-tasks" component={MentorTask}/>
+                <Route exact path="/add-course" component={AddCourse}/>
             </Switch>
         </Router>
     );

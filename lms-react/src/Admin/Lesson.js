@@ -2,11 +2,19 @@ import React, {Component, useEffect, useState} from 'react';
 import "./main.css"
 import request from "../utils/request";
 import {api} from "../utils/api";
+import {useHistory} from "react-router-dom";
+import {TOKEN} from "../utils/constant";
 
 function Lesson() {
     const [lessons, setLessons]=useState([]);
+    const history = useHistory();
+
     useEffect(()=>{
-        getAllLesson()
+        if (localStorage.getItem(TOKEN)){
+            getAllLesson()
+        }else {
+            history.push("/sign-in")
+        }
     },[])
 
     const getAllLesson=()=>{
@@ -29,7 +37,7 @@ function Lesson() {
                 <a href="/tasks">Tasks</a>
             </div>
             <br/>
-            <button className="btn btn-info">qo`shish</button>
+            {/*<button className="btn btn-info">qo`shish</button>*/}
             <br/>
             <div>
                 <table className="table table-hover">

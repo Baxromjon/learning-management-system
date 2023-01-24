@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/task")
 public class TaskController {
@@ -24,5 +26,10 @@ public class TaskController {
     @GetMapping("/get_all_task")
     public HttpEntity<?> getAll(){
         return ResponseEntity.ok(taskService.getAll());
+    }
+
+    @GetMapping("/get_all_task_by_mentor/{mentorId}")
+    public HttpEntity<?> getAllByMentor(@PathVariable UUID mentorId){
+        return ResponseEntity.ok(taskService.getAllByMentor(mentorId));
     }
 }

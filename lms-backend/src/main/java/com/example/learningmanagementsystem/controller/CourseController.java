@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/course")
 public class CourseController {
@@ -24,6 +26,11 @@ public class CourseController {
     @GetMapping("/get_all_courses")
     public HttpEntity<?> getAll() {
         ApiResult all = courseService.getAll();
+        return ResponseEntity.status(all.getSuccess() ? HttpStatus.OK : HttpStatus.CONFLICT).body(all);
+    }
+    @GetMapping("/get_all_courses_by_mentor/{mentorId}")
+    public HttpEntity<?> getAll(@PathVariable UUID mentorId) {
+        ApiResult all = courseService.getAllByMentorId(mentorId);
         return ResponseEntity.status(all.getSuccess() ? HttpStatus.OK : HttpStatus.CONFLICT).body(all);
     }
 

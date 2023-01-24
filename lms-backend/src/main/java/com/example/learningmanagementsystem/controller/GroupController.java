@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/group")
 public class GroupController {
@@ -24,5 +26,10 @@ public class GroupController {
     @GetMapping("/get_all_group")
     public HttpEntity<?> getAll() {
         return ResponseEntity.ok(groupService.getAll());
+    }
+
+    @GetMapping("/get_all_group_by_mentor/{mentorId}")
+    public HttpEntity<?> getAllByMentor(@PathVariable UUID mentorId) {
+        return ResponseEntity.ok(groupService.getAllByMentor(mentorId));
     }
 }
