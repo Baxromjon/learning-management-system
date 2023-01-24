@@ -38,4 +38,8 @@ public class TaskService {
             return new ApiResult(false, "Error in add Task");
         }
     }
+
+    public ApiResult getAll() {
+        return new ApiResult(taskRepository.findAll(), true);
+    }
 }

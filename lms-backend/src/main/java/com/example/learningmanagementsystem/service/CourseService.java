@@ -9,6 +9,8 @@ import com.example.learningmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseService {
 
@@ -32,6 +34,16 @@ public class CourseService {
         } catch (Exception e) {
             e.printStackTrace();
             return new ApiResult(false, "Error in add course");
+        }
+    }
+
+    public ApiResult getAll() {
+        try {
+            List<Course> all = courseRepository.findAll();
+            return new ApiResult(all, true);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResult(false, "Error in get courses");
         }
     }
 }

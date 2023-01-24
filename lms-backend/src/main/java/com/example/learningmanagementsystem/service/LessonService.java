@@ -44,4 +44,8 @@ public class LessonService {
             return new ApiResult(false, "Error in ad  lesson");
         }
     }
+
+    public ApiResult getAll() {
+        return new ApiResult(lessonRepository.findAll(),true);
+    }
 }

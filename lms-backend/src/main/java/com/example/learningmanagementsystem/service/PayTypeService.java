@@ -27,4 +27,8 @@ public class PayTypeService {
             return new ApiResult(false, "Error in add paytype");
         }
     }
+
+    public ApiResult getAll() {
+        return new ApiResult(payTypeRepository.findAll(), true);
+    }
 }

@@ -44,4 +44,8 @@ public class GroupService {
             return new ApiResult(false, "Error in Add group");
         }
     }
+
+    public ApiResult getAll() {
+        return new ApiResult(groupRepository.findAll(), true);
+    }
 }

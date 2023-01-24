@@ -17,4 +17,5 @@ public class UserController {
     public HttpEntity<?> getUser(@CurrentUser User user){
         return ResponseEntity.ok(new ApiResult(user, true));
     }
+
 }
