@@ -34,6 +34,7 @@ public class GroupService {
                     groupDTO.getInviteLink(),
                     groupDTO.getTime(),
                     course,
+                    groupDTO.getPrice(),
                     userList
             );
             groupRepository.save(group);

@@ -18,4 +18,5 @@ public class GroupDTO {
     private String inviteLink;
     private UUID courseId;
     private List<UUID> userId;
+    private double price;
 }

@@ -25,7 +25,7 @@ public interface EntityName {
 
     String GENDER = "gender";
     String COURSE = "courses";
-    String GROUP = "group";
+    String GROUP = "groups";
     String LESSON = "lesson";
     String TASK = "task";
     String CASH = "cash";
@@ -34,4 +34,6 @@ public interface EntityName {
     String USER_TASK_ANSWER = "user_task_answer";
     String OPEN_LESSON = "open_lesson";
     String OPEN_LESSON_STUDENTS = "open_lesson_students";
+    String MODULES = "modules";
+    String USERS_GROUPS = "users_groups";
 }

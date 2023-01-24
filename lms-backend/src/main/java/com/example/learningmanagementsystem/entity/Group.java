@@ -42,6 +42,8 @@ public class Group extends AbsEntity {
     @ManyToOne
     private Course course;
 
+    private double price;
+
     @ManyToMany(fetch = FetchType.LAZY)
     private List<User> mentors;
 }
