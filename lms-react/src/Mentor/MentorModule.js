@@ -130,10 +130,18 @@ function MentorModule() {
                 <ModalHeader>Add Module</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit(addModule)}>
-                        <div className="form-group">
-                            <label>Course title</label>
-                            <input className="form-control form-control-lg" defaultValue="" {...register("title")} />
+                        <div className="row">
+                            <div className="col-md-6">
+                                <label>Module title</label>
+                                <input className="form-control form-control-lg" defaultValue="" {...register("title")} />
+                            </div>
+                            <div className="col-md-6">
+                                <label>Module Price</label>
+                                <input className="form-control form-control-lg" type="number"
+                                       defaultValue="" {...register("price")} />
+                            </div>
                         </div>
+
                         <div className="form-group">
                             <label>Description</label>
                             <input className="form-control form-control-lg"
@@ -144,11 +152,7 @@ function MentorModule() {
                             <input className="form-control form-control-lg"
                                    defaultValue="" {...register("inviteLink")} />
                         </div>
-                        <div className="form-group">
-                            <label>Module Price</label>
-                            <input className="form-control form-control-lg" type="number"
-                                   defaultValue="" {...register("price")} />
-                        </div>
+
                         <div className="form-group">
                             <label>Select Course</label>
                             <select className="form-control form-control-lg" {...register("courseId")}>

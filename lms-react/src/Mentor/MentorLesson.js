@@ -66,35 +66,37 @@ function MentorLesson() {
         formData.append("file", file.target.files[0])
         console.log(file)
         request({
-            url:api.addFile,
-            method:'POST',
-            data:formData
-        }).then(res=>{
+            url: api.addFile,
+            method: 'POST',
+            data: formData
+        }).then(res => {
             setCurrentFile(res.data)
-        }).catch(err=>{})
+        }).catch(err => {
+        })
     }
-    const addLesson = (e,v) => {
-        let LessonDTO={
-            url:'',
-            title:'',
-            groupId:'',
-            lessonNumber:'',
-            videoId:''
+    const addLesson = (e, v) => {
+        let LessonDTO = {
+            url: '',
+            title: '',
+            groupId: '',
+            lessonNumber: '',
+            videoId: ''
         }
-        LessonDTO.lessonNumber=e.lessonNumber;
-        LessonDTO.title=e.title;
-        LessonDTO.url=e.url;
-        LessonDTO.groupId=e.groupId;
-        LessonDTO.videoId=currentFile;
+        LessonDTO.lessonNumber = e.lessonNumber;
+        LessonDTO.title = e.title;
+        LessonDTO.url = e.url;
+        LessonDTO.groupId = e.groupId;
+        LessonDTO.videoId = currentFile;
         console.log(LessonDTO);
         request({
-            url:api.addLesson,
-            method:'POST',
-            data:LessonDTO
-        }).then(res=>{
+            url: api.addLesson,
+            method: 'POST',
+            data: LessonDTO
+        }).then(res => {
             getAllLesson()
             hideModal()
-        }).catch(err=>{})
+        }).catch(err => {
+        })
     }
 
 
@@ -160,7 +162,10 @@ function MentorLesson() {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>Upload file</label>
+                            <label>Upload file</label><br/>
+                            {<video width="320" height="240" controls className="m-1">
+                                <source src={'http://192.168.0.218:8080/api/photo/get/' + currentFile}/>
+                            </video>}
                             <input className="mt-3" {...register("videoId", {required: true})} type="file"
                                    accept='video/*' onChange={uploadFile}/>
                         </div>

@@ -130,7 +130,7 @@ function MentorPage() {
                         </div>
                         <div className="form-group">
                             <label>Course level</label>
-                            <select {...register("level")}>
+                            <select {...register("level")} className="form-control form-control-lg">
                                 <option value="EASY">EASY</option>
                                 <option value="MEDIUM">MEDIUM</option>
                                 <option value="HARD">HARD</option>
