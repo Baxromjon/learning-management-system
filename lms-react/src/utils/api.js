@@ -4,6 +4,7 @@ export const api={
     login:'/auth/login',
     userMe:'/user/me',
     getUserCash:'/user/api/get_cash_by_user',
+    getUserById:'/user/get_user_by_id',
 
     //ROLE
     getAllRole:'/role/get_all_roles',

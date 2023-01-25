@@ -7,13 +7,15 @@ import {api} from "../utils/api";
 function UserPage() {
     const [courses, setCourses] = useState([]);
     const history = useHistory();
-    const [currentUser] = useState(localStorage.getItem(CURRENTUSER))
+    const [currentUser, setCurrentUser] = useState('')
     const [cash, setCash] = useState([]);
+    const [currentUserId]=useState(localStorage.getItem(CURRENTUSER))
 
     useEffect(() => {
         if (localStorage.getItem(TOKEN)) {
-            getAllCourses()
+            getUserById()
             getUserCash()
+            getAllCourses()
         } else {
             history.push("/sign-in")
         }
@@ -34,14 +36,23 @@ function UserPage() {
         console.log(CURRENT_COURSE)
         history.push("/course-main")
     }
+
     const getUserCash = () => {
-        console.log(currentUser)
+            let userId=currentUserId
+            request({
+                url: api.getUserCash + '/' + userId,
+                method: 'GET'
+            }).then(res => {
+                setCash(res.data)
+            })
+    }
+
+    const getUserById=()=>{
         request({
-            url: api.getUserCash + '/' + currentUser,
-            method: 'GET'
-        }).then(res => {
-            console.log(res.data)
-            setCash(res.data)
+            url:api.getUserById+'/'+currentUserId,
+            method:'GET'
+        }).then(res=>{
+            setCurrentUser(res.data)
         })
     }
     return (
@@ -52,17 +63,17 @@ function UserPage() {
                         <div className="card h-100">
                             <div className="card-body">
                                 <div className="account-settings">
-                                    <div className="user-profile">
+                                    <div className="user-profile">{console.log(currentUser)}
                                         {/*<div className="user-avatar">*/}
                                         {/*    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"*/}
                                         {/*         alt="Maxwell Admin"/>*/}
                                         {/*</div>*/}
-                                        {/*<h5 className="user-name">{cash.user.firstName+" "+cash.user.lastName}</h5>*/}
-                                        {/*<h6 className="user-email">phone number: {cash.user.phoneNumber}</h6>*/}
-                                        {/*<h6 className="user-birth_date">birth date: {cash.user.birthDate.split('T')[0]}</h6>*/}
-                                        {/*<h6 className="user-birth_date">gender: {cash.user.gender.gender}</h6>*/}
-                                        {/*<h6 className="user-birth_date">parent: {cash.user.parentId.firstName+" "+cash.user.parentId.lastName}</h6>*/}
-                                        {/*<h6 className="user-birth_date">parent phone: {cash.user.parentId.phoneNumber}</h6>*/}
+                                        <h5 className="user-name">{currentUser.firstName+" "+currentUser.lastName}</h5>
+                                        <h6 className="user-email">phone number: {currentUser.phoneNumber}</h6>
+                                        {/*<h6 className="user-birth_date">birth date: {currentUser.birthDate.split('T')[0]}</h6>*/}
+                                        {/*<h6 className="user-birth_date">gender: {currentUser.gender.gender}</h6>*/}
+                                        {/*<h6 className="user-birth_date">parent: {currentUser.parentId.firstName+" "+currentUser.parentId.lastName}</h6>*/}
+                                        {/*<h6 className="user-birth_date">parent phone: {currentUser.parentId.phoneNumber}</h6>*/}
                                     </div>
                                     <div className="about">
                                         <h5>My Cash:</h5>

@@ -26,15 +26,20 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/me")
-    public HttpEntity<?> getUser(@CurrentUser User user){
+    public HttpEntity<?> getUser(@CurrentUser User user) {
         return ResponseEntity.ok(new ApiResult(user, true));
     }
 
     @GetMapping("/api/get_cash_by_user/{userId}")
-    public HttpEntity<?> getCash(@PathVariable UUID userId){
+    public HttpEntity<?> getCash(@PathVariable UUID userId) {
         User user = userRepository.findById(userId).orElseThrow();
         Cash cash = cashRepository.findByUser(user);
         return ResponseEntity.ok(cash);
+    }
+
+    @GetMapping("/get_user_by_id/{userId}")
+    public HttpEntity<?> getUserById(@PathVariable UUID userId) {
+        return ResponseEntity.ok(userRepository.findById(userId).orElseThrow());
     }
 
 }

@@ -36,23 +36,47 @@ function Register() {
             setGender(res.data.data)
         })
     }
-    const registerUser = (e) => {
+    const save = (e,v) => {
         console.log(e);
+        request({
+            url:api.register,
+            method:'POST',
+            data:e
+        }).then(res=>{
+            history.push("/sign-in")
+        }).catch(err=>{
+            alert("Error!")
+        })
     }
     // render() {
     return (
 
         <div className="container">
-            <form action="#">
+            {/*<form action="#">*/}
                 <div className="row justify-content-md-center">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="login-screen">
                             <div className="login-box">
                                 <a href="#" className="login-logo">
-                                    <img src="//ssl.gstatic.com/accounts/ui/logo_2x.png"
-                                         alt="Bootdey bootstrap snippets bootdey"/>
+                                    {/*<img src="//ssl.gstatic.com/accounts/ui/logo_2x.png"*/}
+                                    {/*     alt="Bootdey bootstrap snippets bootdey"/>*/}
                                 </a>
-                                <form onSubmit={handleSubmit(registerUser)}>
+                                {/*<form onSubmit={handleSubmit(save)}>*/}
+                                {/*    <div className="row">*/}
+                                {/*        <div className="col-md-6">*/}
+                                {/*            <label>Enter First Name</label>*/}
+                                {/*            <input type="text" className="form-control form-control-lg" defaultValue=""*/}
+                                {/*                   placeholder="Enter First Name" {...register("firstName")}/>*/}
+                                {/*        </div>*/}
+                                {/*        <div className="col-md-6">*/}
+                                {/*            <label>Enter Last Name</label>*/}
+                                {/*            <input type="text" className="form-control form-control-lg" defaultValue=""*/}
+                                {/*                   placeholder="Enter Last Name" {...register("lastName")}/>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*    <button className="btn btn-info" type="submit">REGISTER</button>*/}
+                                {/*</form>*/}
+                                <form onSubmit={handleSubmit(save)}>
                                     <div className="row gutters">
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
                                             <input className="form-control form-control-lg" defaultValue=""
@@ -72,10 +96,10 @@ function Register() {
                                                    placeholder="Enter Password" {...register("password")} />
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
-                                            <input type="date" {...register("birthDate")}/>
+                                            <input className="form-control form-control-lg" type="date" {...register("birthDate")}/>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
-                                            <select {...register("genderId")}>
+                                            <select {...register("genderId")}  className="form-control form-control-lg">
                                                 <option value="">SELECT GENDER</option>
                                                 {gender?.map(item =>
                                                     <option value={item.id} key={item.id}>{item.gender}</option>
@@ -83,7 +107,7 @@ function Register() {
                                             </select>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
-                                            <select {...register("roleId")}>
+                                            <select {...register("roleId")}  className="form-control form-control-lg">
                                                 <option value="">SELECT ROLE</option>
                                                 {roles?.map(item =>
                                                     <option value={item.id}
@@ -91,29 +115,35 @@ function Register() {
                                                 )}
                                             </select>
                                         </div>
-                                    </div>
-                                    <div className="actions clearfix">
+
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
+                                            <input className="form-control form-control-lg" defaultValue=""
+                                                   type="text"
+                                                   placeholder="Enter Parent Key" {...register("parentKey")} />
+                                        </div>
+                                    </div><br/>
+                                    {/*<div className="actions clearfix">*/}
                                         <button type="submit" className="btn btn-primary btn-block">SIGN-UP</button>
-                                    </div>
-                                    <div className="or">
-                                        <span>or signup using</span>
-                                    </div>
-                                    <div className="row gutters">
-                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <button type="submit" className="btn btn-tw btn-block">Twitter</button>
-                                        </div>
-                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <button type="submit" className="btn btn-fb btn-block">Facebook</button>
-                                        </div>
-                                    </div>
-                                    <a href="#" className="additional-link">Have an Account? <span>Login Now</span></a>
+                                    {/*</div>*/}
+                                    {/*<div className="or">*/}
+                                    {/*    <span>or signup using</span>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="row gutters">*/}
+                                    {/*    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">*/}
+                                    {/*        <button type="submit" className="btn btn-tw btn-block">Twitter</button>*/}
+                                    {/*    </div>*/}
+                                    {/*    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">*/}
+                                    {/*        <button type="submit" className="btn btn-fb btn-block">Facebook</button>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+                                    {/*<a href="#" className="additional-link">Have an Account? <span>Login Now</span></a>*/}
                                 </form>
 
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            {/*</form>*/}
         </div>
     );
     // }
