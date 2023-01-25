@@ -3,6 +3,7 @@ export const api={
     register:'/auth/register',
     login:'/auth/login',
     userMe:'/user/me',
+    getUserCash:'/user/api/get_cash_by_user',
 
     //ROLE
     getAllRole:'/role/get_all_roles',
@@ -19,6 +20,8 @@ export const api={
     getAllGroup:'/group/get_all_group',
     getAllGroupByMentor:'/group/get_all_group_by_mentor',
     addGroup:'/group/add_group',
+    getByCourse:'/group/get_by_course_id',
+    buyModule:'/users_groups/add',
 
     //LESSON
     getAllLesson:'/lesson/get_all_lesson',

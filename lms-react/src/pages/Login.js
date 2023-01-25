@@ -3,7 +3,7 @@ import "./login.css";
 import {useForm} from 'react-hook-form'
 import request from "../utils/request";
 import {api} from "../utils/api";
-import {TOKEN} from "../utils/constant";
+import {CURRENTUSER, TOKEN} from "../utils/constant";
 import {useHistory} from 'react-router-dom';
 
 
@@ -24,7 +24,8 @@ function Login(){
                     url:api.userMe,
                     method:'GET'
                 }).then(ress=>{
-                    console.log(ress.data.data.authorities[0].roleEnum)
+                    localStorage.setItem(CURRENTUSER, ress.data.data.id)
+                    console.log(ress.data.data.id)
                     if (ress.data.data.authorities[0].roleEnum==='ROLE_ADMIN'){
                         history.push("/admin")
                     }else if (ress.data.data.authorities[0].roleEnum==='ROLE_PARENT'){
@@ -68,11 +69,11 @@ function Login(){
                                         <form onSubmit={handleSubmit(login)}>
                                             <div className="form-group">
                                                 <label>Phone Number</label>
-                                                <input className="form-control form-control-lg" defaultValue="phoneNumber" {...register("phoneNumber")} />
+                                                <input className="form-control form-control-lg" defaultValue="" {...register("phoneNumber")} />
                                             </div>
                                             <div className="form-group">
                                                 <label>Password</label>
-                                                <input className="form-control form-control-lg" type="password" defaultValue="password" {...register("password")} />
+                                                <input className="form-control form-control-lg" type="password" defaultValue="" {...register("password")} />
                                                     <small>
                                                         <a>Forgot password?</a>
                                                     </small>

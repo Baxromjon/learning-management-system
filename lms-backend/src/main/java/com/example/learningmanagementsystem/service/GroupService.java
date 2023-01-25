@@ -60,4 +60,9 @@ public class GroupService {
             return new ApiResult(false, "Error in get modules");
         }
     }
+
+    public ApiResult getAllByCourse(UUID courseId) {
+        Course course = courseRepository.findById(courseId).orElseThrow();
+        return new ApiResult(groupRepository.findByCourse(course), true);
+    }
 }

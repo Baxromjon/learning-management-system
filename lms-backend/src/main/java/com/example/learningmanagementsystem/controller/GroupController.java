@@ -32,4 +32,10 @@ public class GroupController {
     public HttpEntity<?> getAllByMentor(@PathVariable UUID mentorId) {
         return ResponseEntity.ok(groupService.getAllByMentor(mentorId));
     }
+
+    @GetMapping("/get_by_course_id/{courseId}")
+    public HttpEntity<?> getAllById(@PathVariable UUID courseId){
+        ApiResult all = groupService.getAllByCourse(courseId);
+        return ResponseEntity.status(all.getSuccess()?HttpStatus.OK:HttpStatus.CONFLICT).body(all);
+    }
 }

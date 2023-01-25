@@ -1,5 +1,6 @@
 package com.example.learningmanagementsystem.repository;
 
+import com.example.learningmanagementsystem.entity.Course;
 import com.example.learningmanagementsystem.entity.Group;
 import com.example.learningmanagementsystem.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,7 @@ public interface GroupRepository extends JpaRepository<Group, UUID> {
             "         inner join courses c on g.course_id = c.id\n" +
             "where c.mentor_id_id = :mentorId")
     List<Group> getAllGroupByMentor(UUID mentorId);
+
+    List<Group> findByCourse(Course course);
 
 }

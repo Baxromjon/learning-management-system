@@ -13,6 +13,7 @@ import AddCourse from "./Admin/AddCourse";
 import MentorModule from "./Mentor/MentorModule";
 import MentorLesson from "./Mentor/MentorLesson";
 import MentorTask from "./Mentor/MentorTask";
+import OneCourse from "./User/OneCourse";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                 <Route exact path="/tasks" component={Task}/>
                 <Route exact path="/mentor-tasks" component={MentorTask}/>
                 <Route exact path="/add-course" component={AddCourse}/>
+                <Route exact path="/course-main" component={OneCourse}/>
             </Switch>
         </Router>
     );
