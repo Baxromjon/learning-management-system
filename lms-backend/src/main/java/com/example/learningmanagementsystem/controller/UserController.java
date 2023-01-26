@@ -30,7 +30,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResult(user, true));
     }
 
-    @GetMapping("/api/get_cash_by_user/{userId}")
+    @GetMapping("/get_cash_by_user/{userId}")
     public HttpEntity<?> getCash(@PathVariable UUID userId) {
         User user = userRepository.findById(userId).orElseThrow();
         Cash cash = cashRepository.findByUser(user);

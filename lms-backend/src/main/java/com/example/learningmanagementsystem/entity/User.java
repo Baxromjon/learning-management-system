@@ -1,6 +1,7 @@
 package com.example.learningmanagementsystem.entity;
 
 import com.example.learningmanagementsystem.entity.template.AbsEntity;
+import com.example.learningmanagementsystem.enums.GenderEnums;
 import com.example.learningmanagementsystem.utils.ColumnName;
 import com.example.learningmanagementsystem.utils.EntityName;
 import lombok.AllArgsConstructor;
@@ -47,13 +48,13 @@ public class User extends AbsEntity implements UserDetails {
     @Column(name = ColumnName.EMAIL)
     private String email;
 
-    @OneToOne
-    private Gender gender;
+    @Enumerated(EnumType.STRING)
+    private GenderEnums gender;
 
     private String parentKey;
 
     @ManyToOne
-    private User parentId;
+    private User parent;
 
     @ManyToMany
     @JoinTable(name = ColumnName.USER_ROLE,

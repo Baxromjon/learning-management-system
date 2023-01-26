@@ -16,7 +16,6 @@ function Register() {
 
     useEffect(() => {
         getAllRoles()
-        getAllGender()
     }, [])
 
     const getAllRoles = () => {
@@ -26,14 +25,6 @@ function Register() {
         }).then(ress => {
             setRoles(ress.data.data)
         }).catch(err => {
-        })
-    }
-    const getAllGender = () => {
-        request({
-            url: api.getAllGender,
-            method: 'GET'
-        }).then(res => {
-            setGender(res.data.data)
         })
     }
     const save = (e,v) => {
@@ -58,24 +49,9 @@ function Register() {
                         <div className="login-screen">
                             <div className="login-box">
                                 <a href="#" className="login-logo">
-                                    {/*<img src="//ssl.gstatic.com/accounts/ui/logo_2x.png"*/}
-                                    {/*     alt="Bootdey bootstrap snippets bootdey"/>*/}
+                                    <img src="//ssl.gstatic.com/accounts/ui/logo_2x.png"
+                                         alt="Bootdey bootstrap snippets bootdey"/>
                                 </a>
-                                {/*<form onSubmit={handleSubmit(save)}>*/}
-                                {/*    <div className="row">*/}
-                                {/*        <div className="col-md-6">*/}
-                                {/*            <label>Enter First Name</label>*/}
-                                {/*            <input type="text" className="form-control form-control-lg" defaultValue=""*/}
-                                {/*                   placeholder="Enter First Name" {...register("firstName")}/>*/}
-                                {/*        </div>*/}
-                                {/*        <div className="col-md-6">*/}
-                                {/*            <label>Enter Last Name</label>*/}
-                                {/*            <input type="text" className="form-control form-control-lg" defaultValue=""*/}
-                                {/*                   placeholder="Enter Last Name" {...register("lastName")}/>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*    <button className="btn btn-info" type="submit">REGISTER</button>*/}
-                                {/*</form>*/}
                                 <form onSubmit={handleSubmit(save)}>
                                     <div className="row gutters">
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
@@ -99,11 +75,10 @@ function Register() {
                                             <input className="form-control form-control-lg" type="date" {...register("birthDate")}/>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
-                                            <select {...register("genderId")}  className="form-control form-control-lg">
+                                            <select {...register("gender")}  className="form-control form-control-lg">
                                                 <option value="">SELECT GENDER</option>
-                                                {gender?.map(item =>
-                                                    <option value={item.id} key={item.id}>{item.gender}</option>
-                                                )}
+                                                <option value="MALE">MALE</option>
+                                                <option value="FEMALE">FEMALE</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 p-1">
@@ -122,21 +97,19 @@ function Register() {
                                                    placeholder="Enter Parent Key" {...register("parentKey")} />
                                         </div>
                                     </div><br/>
-                                    {/*<div className="actions clearfix">*/}
                                         <button type="submit" className="btn btn-primary btn-block">SIGN-UP</button>
-                                    {/*</div>*/}
-                                    {/*<div className="or">*/}
-                                    {/*    <span>or signup using</span>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="row gutters">*/}
-                                    {/*    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">*/}
-                                    {/*        <button type="submit" className="btn btn-tw btn-block">Twitter</button>*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">*/}
-                                    {/*        <button type="submit" className="btn btn-fb btn-block">Facebook</button>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    {/*<a href="#" className="additional-link">Have an Account? <span>Login Now</span></a>*/}
+                                    <div className="or">
+                                        <span>or signup using</span>
+                                    </div>
+                                    <div className="row gutters">
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <button type="submit" className="btn btn-tw btn-block">Google</button>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <button type="submit" className="btn btn-fb btn-block">Facebook</button>
+                                        </div>
+                                    </div>
+                                    <a href="#" className="additional-link">Have an Account? <span>Login Now</span></a>
                                 </form>
 
                             </div>

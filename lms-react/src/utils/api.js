@@ -3,7 +3,7 @@ export const api={
     register:'/auth/register',
     login:'/auth/login',
     userMe:'/user/me',
-    getUserCash:'/user/api/get_cash_by_user',
+    getUserCash:'/user/get_cash_by_user',
     getUserById:'/user/get_user_by_id',
 
     //ROLE
@@ -36,6 +36,14 @@ export const api={
 
     //ATTACHMENT
     addFile:'/photo/add_photo',
+
+
+    //PAYMENT
+    billing:'/payment/add_payment',
+
+
+    //PAYTYPE
+    getAllPayType:'/payType/get_all_pay_type',
 
 
 

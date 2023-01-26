@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleService {
@@ -16,7 +17,7 @@ public class RoleService {
 
     public ApiResult getAll() {
         try {
-            List<Role> all = roleRepository.findAll();
+            Set<Role> all = roleRepository.getAllUserRole();
             return new ApiResult(all, true);
         }catch (Exception e){
             e.printStackTrace();

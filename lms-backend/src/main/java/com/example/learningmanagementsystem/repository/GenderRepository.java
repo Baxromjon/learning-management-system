@@ -1,9 +1,9 @@
-package com.example.learningmanagementsystem.repository;
-
-import com.example.learningmanagementsystem.entity.Gender;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface GenderRepository extends JpaRepository<Gender, Integer> {
-}
+//package com.example.learningmanagementsystem.repository;
+//
+//import com.example.learningmanagementsystem.entity.Gender;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface GenderRepository extends JpaRepository<Gender, Integer> {
+//}

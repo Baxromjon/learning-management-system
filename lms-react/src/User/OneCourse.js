@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {CURRENT_COURSE} from "../utils/constant";
+import {CURRENT_COURSE, CURRENTUSER} from "../utils/constant";
 import request from "../utils/request";
 import {api} from "../utils/api";
 import {Modal, ModalBody, ModalHeader} from 'reactstrap';
 
 function OneCourse() {
     const [currentCourse] = useState(localStorage.getItem(CURRENT_COURSE))
+    const [currentUserId] = useState(localStorage.getItem(CURRENTUSER))
+    const [currentUser, setCurrentUser] = useState('');
     const [modules, setModules] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [currentModule, setCurrentModule] = useState('');
-    const [currentUser, setCurrentUser] = useState('');
+    const [cash, setCash] = useState([]);
+
     useEffect(() => {
-        getAllModule()
         getUserMe()
+        getAllModule()
+        getCashUser()
     }, [])
 
     const hideModal = (item) => {
@@ -44,7 +48,18 @@ function OneCourse() {
             hideModal()
             getAllModule()
         }).catch(er => {
-
+            alert(er.getMessage)
+        })
+    }
+    const getCashUser = () => {
+        let userId = currentUser.id
+        console.log(currentUserId)
+        request({
+            url: api.getUserCash + '/' + currentUserId,
+            method: 'GET'
+        }).then(res => {
+            console.log(res.data)
+            setCash(res.data)
         })
     }
     const getAllModule = () => {
@@ -75,7 +90,8 @@ function OneCourse() {
                         <td>{item.title}</td>
                         <td>{item.price + " $"}</td>
                         <td>
-                            <button className="btn btn-info"
+                            <button className="btn btn-info" disabled={cash.amount < item.price}
+                                /*{cash.amount < item.price ? disabled : ''}*/
                                     onClick={() => hideModal(item)}>BUY
                             </button>
                         </td>
@@ -84,7 +100,7 @@ function OneCourse() {
                 </tbody>
             </table>
             <Modal isOpen={showModal}>
-                <ModalHeader>Do you want to buy this Module {currentModule.title}</ModalHeader>
+                <ModalHeader>Do you want to buy this Module</ModalHeader>
                 <div className="row" style={{marginLeft: "auto", marginRight: "auto"}}>
                     <button className="btn btn-success m-2" type="submit" onClick={buyGroup}>YES</button>
                     <button className="btn btn-danger m-2" onClick={hideModal}>NO</button>

@@ -17,6 +17,6 @@ public class RegisterDTO {
     private String phoneNumber;
     private String password;
     private Integer roleId;
-    private Integer genderId;
+    private String gender;
     private String parentKey;
 }

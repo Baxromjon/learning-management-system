@@ -1,7 +1,6 @@
 package com.example.learningmanagementsystem.service;
 
 import com.example.learningmanagementsystem.entity.Cash;
-import com.example.learningmanagementsystem.entity.Gender;
 import com.example.learningmanagementsystem.entity.Role;
 import com.example.learningmanagementsystem.entity.User;
 import com.example.learningmanagementsystem.enums.GenderEnums;
@@ -9,7 +8,6 @@ import com.example.learningmanagementsystem.enums.RoleEnum;
 import com.example.learningmanagementsystem.payload.ApiResult;
 import com.example.learningmanagementsystem.payload.RegisterDTO;
 import com.example.learningmanagementsystem.repository.CashRepository;
-import com.example.learningmanagementsystem.repository.GenderRepository;
 import com.example.learningmanagementsystem.repository.RoleRepository;
 import com.example.learningmanagementsystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +33,6 @@ public class AuthService implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    GenderRepository genderRepository;
-
-    @Autowired
     CashRepository cashRepository;
 
 
@@ -56,7 +51,7 @@ public class AuthService implements UserDetailsService {
 
     public ApiResult register(RegisterDTO registerDTO) {
         try {
-            Gender gender = genderRepository.findById(registerDTO.getGenderId()).orElseThrow();
+//            Gender gender = genderRepository.findById(registerDTO.getGenderId()).orElseThrow();
             Role role = roleRepository.findById(registerDTO.getRoleId()).orElseThrow();
             Set<Role> byName = roleRepository.findByRoleEnum(role.getRoleEnum());
             User user = new User();
@@ -65,18 +60,18 @@ public class AuthService implements UserDetailsService {
             user.setBirthDate(registerDTO.getBirthDate());
             user.setPhoneNumber(registerDTO.getPhoneNumber());
             user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
-            user.setGender(gender);
+            user.setGender(GenderEnums.valueOf(registerDTO.getGender()));
             user.setRoles(byName);
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_PARENT.toString())) {
                 user.setParentKey(randomParentKey());
             }
             if (role.getRoleEnum().name().equals(RoleEnum.ROLE_USER.toString())) {
                 User parent = userRepository.findUserByParentKey(registerDTO.getParentKey());
-                user.setParentId(parent);
+                user.setParent(parent);
             }
             userRepository.save(user);
 
-            if (user.getRoles().iterator().next().getRoleEnum().equals(RoleEnum.ROLE_USER)) {
+            if (!user.getRoles().iterator().next().getRoleEnum().equals(RoleEnum.ROLE_PARENT)) {
                 Cash cash = new Cash(0, user);
                 cashRepository.save(cash);
             }

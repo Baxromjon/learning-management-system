@@ -26,6 +26,6 @@ public class Cash extends AbsEntity {
     @Column(name = ColumnName.AMOUNT)
     private double amount;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne
     private User user;
 }
